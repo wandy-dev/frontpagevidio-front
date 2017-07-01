@@ -25,7 +25,6 @@ function Item(data, index) {
 getVideos = function(url = 'https://www.reddit.com/r/videos/.json?jsonp') {
   $.getJSON(url, function(data){
     var posts = data.data;
-    console.log(posts)
     var mappedData = $.map(posts.children, function(item) {
       var media    = item.data;
       var url      = new URL(media.url);
@@ -48,10 +47,11 @@ getVideos = function(url = 'https://www.reddit.com/r/videos/.json?jsonp') {
 function viewModel() {
   var self = this;
 
-  self.videoTitle   = ko.observable();
-  self.videoUrl     = ko.observable();
-  self.videos       = ko.observableArray();
-  self.booleanValue = ko.observable(true);
+  self.videoTitle    = ko.observable();
+  self.videoUrl      = ko.observable();
+  self.videoComments = ko.observable();
+  self.videos        = ko.observableArray();
+  self.booleanValue  = ko.observable(true);
 
   self.changeActiveVideo = function(url, index, title) {
     integer = index;
