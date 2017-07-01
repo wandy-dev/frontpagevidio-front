@@ -45,7 +45,7 @@ function tryNext(url, title) {
    } else {
      var contentMainHeight = 0;
    };
-  $('#list').animate({scrollTop: listItemPosistion - contentMainHeight - 60 + $('#list').scrollTop()}, 100);
+  $('#list').animate({scrollTop: listItemPosistion - contentMainHeight - 120 + $('#list').scrollTop()}, 100);
 };
 
 function checkPlayback() {
