@@ -31,9 +31,10 @@ getVideos = function(url = 'https://www.reddit.com/r/videos/.json?jsonp') {
 
       if (media.url.length > 0 && acceptedDomains.includes(url.hostname)) {
         videoList.push({
+          id:          videoIndex,
           title:       item.data.title,
           url:         item.data.url,
-          id:          videoIndex
+          redditUrl:   'http://reddit.com' + item.data.permalink
         });
         return new Item(item.data, videoIndex);
       };

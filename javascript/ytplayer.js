@@ -38,7 +38,7 @@ function tryNext(url, title) {
   newID = getURLParameter('v', url);
   renderVideo(newID);
   self.videoUrl(url);
-  self.videoComments(self.videos()[integer].commentsUrl());
+  self.videoComments(videoList[integer].redditUrl);
   self.videoTitle(videoList[integer].title);
   var listItemPosistion = $('#video_' + videoList[integer].id).offset().top
   if($(window).width() < 1024) {
