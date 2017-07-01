@@ -1,0 +1,79 @@
+<html>
+  <head>
+    <title>Wattchit</title>
+    <link>
+    <link>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="./assets/css/foundation.min.css" />
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+    <script src="./javascript/frontend.js"></script>
+    <script src="./javascript/params.js"></script>
+    <script src="./javascript/script.js"></script>
+    <script src="./javascript/ytplayer.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+		<script>
+			// Initialize Firebase
+			var config = {
+				apiKey: "AIzaSyAzmvv4B7LM0YPNbpZiTlDX4IKVoyhlnw8",
+				authDomain: "watch-it-45991.firebaseapp.com",
+				databaseURL: "https://watch-it-45991.firebaseio.com",
+				projectId: "watch-it-45991",
+				storageBucket: "",
+				messagingSenderId: "937840746994"
+			};
+			firebase.initializeApp(config);
+		</script>
+    <script src='https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js'></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
+    <script src="https://use.fontawesome.com/f833c45293.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-json/2.6.0/jquery.json.min.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+  </head>
+  <body>
+    <!-- Always shows a header, even in smaller screens. -->
+    <div class='navbar'>
+      <img src='./assets/images/logo.png'></img>
+    </div>
+    <div id="status-area"></div>
+    <div id='content-main' class='large-8 columns'>
+      <div class='video-container'>
+        <div id='ytplayer'></div>
+      </div>
+      <div class='content'>
+        <h4 data-bind='html: videoTitle'></h4>
+        <p>(<a target='_blank' data-bind='attr: {href: videoUrl}'>Source</a>)</p>
+      </div>
+    </div>
+    <div class='large-4 columns'>
+      <div id='autoplay'>
+        <span>Autoplay</span>&nbsp;<span data-bind='text: booleanValue() ? "On" : "Off"'></span>
+        <input type="checkbox" data-bind="checked: booleanValue" id='autoplay-input'>
+      </div>
+      <div id='list'>
+        <div data-bind="foreach: videos, visible: videos().length > 0">
+          <a href='#' data-bind="click: function() {changeActiveVideo($data.videoID(), $data.index(), $data.title())}">
+            <div data-bind='attr: {id: "video_" + $data.index()}' class='row list-item'>
+              <div class='small-3 columns'>
+                <img data-bind='attr:{src: thumbnail}'>
+              </div>
+              <div class='small-9 columns'>
+                <p data-bind="html: $data.title()" class='list-title'></p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div id='load-more'>Load More</div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    ko.applyBindings(viewModel());
+  </script>
+</html>
